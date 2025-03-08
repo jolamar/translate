@@ -1,7 +1,8 @@
 [
   {
     "title": "Day0a Prologue",
-    "path": "index.html"
+    "path": "index.html",
+    "isDefault": true
   },
   {
     "title": "Day1b Tertia",

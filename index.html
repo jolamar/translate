@@ -18,7 +18,7 @@
         <nav v-if="navigation" class="rvt-subnav rvt-m-bottom-sm" aria-label="Section navigation">
             <ul class="rvt-subnav__list">
                 <li v-for="nav in navigation" class="rvt-subnav__item">
-                    <a :href="nav.path" :aria-current="nav.isCurrentPage ? 'page' : null">{{ nav.title }}</a>
+                    <a :href="nav.path" :aria-current="nav.isCurrentPage || nav.isDefault ? 'page' : null">{{ nav.title }}</a>
                 </li>
             </ul>
         </nav>
