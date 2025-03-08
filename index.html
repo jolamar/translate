@@ -15,13 +15,10 @@
 
 <body translate="no">
     <main id="app" class="rvt-p-all-sm">
-        <nav class="rvt-subnav rvt-m-bottom-sm" aria-label="Section navigation">
+        <nav v-if="navigation" class="rvt-subnav rvt-m-bottom-sm" aria-label="Section navigation">
             <ul class="rvt-subnav__list">
-                <li class="rvt-subnav__item">
-                    <a href="index.html" aria-current="page">Day0a Prologue</a>
-                </li>
-                <li class="rvt-subnav__item">
-                    <a href="day1b-tertia.html">Day1b Tertia</a>
+                <li v-for="nav in navigation" class="rvt-subnav__item">
+                    <a :href="nav.path" :aria-current="nav.isCurrentPage ? 'page' : null">{{ nav.title }}</a>
                 </li>
             </ul>
         </nav>
@@ -171,6 +168,7 @@
         data() {
             return {
                 checkedLanguages: ["la", "en", "es", "it"],
+                navigation: null,
                 grammar: true,
                 verbs: true,
                 declensionCase: true,
@@ -180,7 +178,15 @@
             };
         },
         mounted() {
-            fetch("day0a-prologue.json")
+            fetch("navigation.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    this.navigation = data;
+                    this.navigation.forEach((nav) => {
+                        nav.isCurrentPage = window.location.pathname.includes(nav.path);
+                    });
+                });
+            fetch("chapters/day0a-prologue.json")
                 .then((response) => response.json())
                 .then((data) => {
                     this.chapter = data;
