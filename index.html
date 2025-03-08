@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Day1b Tertia</title>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/rivet-core@2.5.2/css/rivet.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body translate="no">
+    <main id="app" class="rvt-p-all-sm">
+        <nav class="rvt-subnav rvt-m-bottom-sm" aria-label="Section navigation">
+            <ul class="rvt-subnav__list">
+                <li class="rvt-subnav__item">
+                    <a href="index.html" aria-current="page">Day0a Prologue</a>
+                </li>
+                <li class="rvt-subnav__item">
+                    <a href="day1b-tertia.html">Day1b Tertia</a>
+                </li>
+            </ul>
+        </nav>
+        <fieldset>
+            <legend>Select a language</legend>
+            <input type="checkbox" v-model="checkedLanguages" value="la" id="la" />
+            <label for="la">Latin</label>
+            <input type="checkbox" v-model="checkedLanguages" value="en" id="en" />
+            <label for="en">English</label>
+            <input type="checkbox" v-model="checkedLanguages" value="es" id="es" />
+            <label for="es">Spanish</label>
+            <input type="checkbox" v-model="checkedLanguages" value="it" id="it" />
+            <label for="it">Italian</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Controls</legend>
+            <input type="checkbox" v-model="declensionCase" id="declensionCase" />
+            <label for="declensionCase" style="color: #009900">Case</label>
+            <input type="checkbox" v-model="grammar" id="grammar" />
+            <label for="grammar" style="color: #cd1baf">Grammar</label>
+            <input type="checkbox" v-model="verbs" id="verbs" />
+            <label for="verbs" style="color: #dd7330">Verbs</label>
+            <input type="checkbox" v-model="comments" id="comments" />
+            <label for="comments" style="color: #0033FF">Comments</label>
+            <input type="checkbox" v-model="labels" id="labels" />
+            <label for="labels">Labels</label>
+        </fieldset>
+
+        <table class="rvt-m-top-md" border="1" style="width: 100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <th v-for="language in checkedLanguages">
+                    {{ chapter.title[language] }} ({{language}})
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td v-for="language in checkedLanguages">
+          <span class="rvt-font-mono" v-for="s in chapter.header[language]">
+            {{ s.text }}
+            <span
+                    class="tooltip"
+                    v-if="s.case != null"
+                    :style="{
+                      'border-bottom': declensionCase ? '2px solid #009900' : null,
+                      cursor: declensionCase ? 'pointer' : null
+                      }"
+            >
+                {{ s.case.value }}
+              <span v-if="declensionCase" class="tooltiptext">{{s.case.info}}</span>
+            </span>
+            <span
+                    class="tooltip"
+                    v-if="s.grammar != null"
+                    :style="{
+                  'border-bottom': grammar ? '2px solid #CD1BAF' : null,
+                   cursor: grammar ? 'pointer' : null
+                   }"
+            >
+              {{ s.grammar.value }}
+              <span v-if="grammar" class="tooltiptext">{{s.grammar.info}}</span>
+            </span>
+            <span
+                    class="tooltip"
+                    v-if="s.verb != null"
+                    :style="{
+                      'border-bottom': verbs ? '2px solid #DD7330' : null,
+                      cursor: verbs ? 'pointer' : null
+                      }"
+            >
+                {{ s.verb.value }}
+              <span v-if="verbs" class="tooltiptext">{{s.verb.info}}</span>
+            </span>
+            <span
+                    :title="comments ? s.comments.info : null"
+                    v-if="s.comments != null"
+                    :style="{
+                      'border-bottom': comments ? '2px solid #009900' : null,
+                      cursor: comments ? 'pointer' : null
+                      }"
+            >
+                {{ s.comments.value }}
+            </span>
+          </span>
+                </td>
+            </tr>
+            <template v-for="(paragraph, index) in chapter.paragraphs">
+                <tr class="rvt-font-serif" v-for="sentence in paragraph.sentences">
+                    <td v-for="language in checkedLanguages">
+                        <template v-for="item in sentence.s[language]">
+                            <span v-if="item.text">{{ item.text }}</span>
+                            <span v-if="item.grammar">
+                <span class="tooltip" :style="{
+                  'border-bottom': grammar ? '2px solid #CD1BAF' : null,
+                   cursor: grammar ? 'pointer' : null
+                   }">
+                  {{ item.grammar.value }}
+                  <span v-if="grammar" class="tooltiptext">{{item.grammar.info}}</span>
+                </span>
+              </span>
+                            <span v-if="item.case">
+                <span class="tooltip" :style="{
+                      'border-bottom': declensionCase ? '2px solid #009900' : null,
+                      cursor: declensionCase ? 'pointer' : null
+                      }">
+                  {{ item.case.value }}
+                  <span v-if="declensionCase" class="tooltiptext">{{item.case.info}}</span>
+                </span>
+              </span>
+                            <span v-if="item.verb">
+                <span class="tooltip" :style="{
+                      'border-bottom': verbs ? '2px solid #DD7330' : null,
+                      cursor: verbs ? 'pointer' : null
+                      }"
+                >
+                  {{ item.verb.value }}
+                  <span v-if="verbs" class="tooltiptext">{{item.verb.info}}</span>
+                </span>
+              </span>
+                            <span class="tooltip"
+                              v-if="comments && sentence.comment && language == 'en'"
+                              :style="{
+                                  'color': comments ? '#0033FF' : null,
+                                  cursor: comments ? 'pointer' : null
+                                  }"
+                            >
+                                (*)
+                                <span class="tooltiptext comment">{{ sentence.comment }}</span>
+                            </span>
+                        </template>
+                    </td>
+                </tr>
+                <tr v-if="index < chapter.paragraphs.length - 1">
+                    <td class="rvt-bg-black-000" colspan="2" />
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </main>
+
+
+<script>
+    const { createApp, ref } = Vue
+    createApp({
+        data() {
+            return {
+                checkedLanguages: ["la", "en", "es", "it"],
+                grammar: true,
+                verbs: true,
+                declensionCase: true,
+                comments: true,
+                labels: false,
+                chapter: {
+                    title: {
+                        la: "Hora Prima",
+                        en: "Prime"
+                    },
+                    header: {
+                        la: [
+                            {
+                                text: "Quo "
+                            },
+                            {
+                                case: {
+                                    info: "N",
+                                    value: "basis"
+                                }
+                            },
+                            {
+                                text:
+                                    " abbatiae pervenitur, atque Guillelmus magnum\n            acumen ostendat."
+                            }
+                        ],
+                        en: [
+                            {
+                                text:
+                                    "In which the foot of the abbey is reached, and William demonstrates his great\n            acumen."
+                            }
+                        ]
+                    },
+                    paragraphs: [
+                        {
+                            sentences: [
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                grammar: {
+                                                    info: "existencial use",
+                                                    value: "Erat"
+                                                }
+                                            },
+                                            {
+                                                text: " pulchra prima lux ad finem\n                "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "G",
+                                                    value: "novembris"
+                                                }
+                                            },
+                                            {
+                                                text: "."
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    " It was a beautiful morning at the end of November."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text: "Per noctem "
+                                            },
+                                            {
+                                                verb: {
+                                                    info: "plupp",
+                                                    value: "ninxerat"
+                                                }
+                                            },
+                                            {
+                                                text: ", sed"
+                                            },
+                                            {
+                                                case: {
+                                                    info: "N",
+                                                    value: "paulum"
+                                                }
+                                            },
+                                            {
+                                                text: ", atque "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "N",
+                                                    value: "terra"
+                                                }
+                                            },
+                                            {
+                                                text: " "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "B",
+                                                    value: "lodice"
+                                                }
+                                            },
+                                            {
+                                                text: " "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "B means",
+                                                    value: "frigida"
+                                                }
+                                            },
+                                            {
+                                                text: " non superius quam tribus digitis "
+                                            },
+                                            {
+                                                verb: {
+                                                    info: "imp pass",
+                                                    value: "velabatur"
+                                                }
+                                            },
+                                            {
+                                                text: "."
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    "During the night it had snowed, but only a little, and the earth was\n                covered with a cool blanket no more than three fingers high."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text: "Eventus horrendus vitam communitatis everterat."
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    "he horrible event had upset the life of the community"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            sentences: [
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text: "Perturbatio effecta "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "B",
+                                                    value: "inventione"
+                                                }
+                                            },
+                                            {
+                                                text: " cadaveris officium\n                "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "C",
+                                                    value: "divinum"
+                                                }
+                                            },
+                                            {
+                                                text: " interruperat."
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    "The confusion caused by the discovery of the corpse had interrupted the\n                holy office."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text: "Abbas ad chorum monachos prompte remisit, "
+                                            },
+                                            {
+                                                grammar: {
+                                                    info: "purp",
+                                                    value: "ut"
+                                                }
+                                            },
+                                            {
+                                                text: "\n                pro anima fratris sui "
+                                            },
+                                            {
+                                                verb: {
+                                                    info: "imp subj",
+                                                    value: " precarentur"
+                                                }
+                                            },
+                                            {
+                                                text: ". "
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    "The abbot promptly sent the monks back to the choir, to pray for the soul\n                of their brother."
+                                            }
+                                        ]
+                                    },
+                                    comment:
+                                        " pray for: https://latinitium.com/latin-dictionaries/?t=sh19330 "
+                                },
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text: "Voces monachorum abruptae erant."
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text: "The monks' voices were broken. "
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text: "Guillelmus egoque sedere "
+                                            },
+                                            {
+                                                verb: {
+                                                    info: "perf",
+                                                    value: "elegimus"
+                                                }
+                                            },
+                                            {
+                                                text: " locum qui nos\n                "
+                                            },
+                                            {
+                                                verb: {
+                                                    info: "imp subj",
+                                                    value: "permitteret"
+                                                }
+                                            },
+                                            {
+                                                text:
+                                                    " facies monachorum inspicere cum liturgia\n                non "
+                                            },
+                                            {
+                                                grammar: {
+                                                    info: "ind st",
+                                                    value: "requirebat"
+                                                }
+                                            },
+                                            {
+                                                text: " "
+                                            },
+                                            {
+                                                case: {
+                                                    info: "C->N",
+                                                    value: "cucullos"
+                                                }
+                                            },
+                                            {
+                                                text: "\n                demissos esse."
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    "William and I chose to sit in a position allowing us to study their faces\n                when the liturgy did not require cowls to be lowered. "
+                                            }
+                                        ]
+                                    },
+                                    comment:
+                                        'in loco quo usually becomes in quo loco "in a place where" in a place that\n                stays in loco qui [N] '
+                                }
+                            ]
+                        },
+                        {
+                            sentences: [
+                                {
+                                    s: {
+                                        la: [
+                                            {
+                                                text:
+                                                    'Ohe, Domine, quam vocem sepulcralem habuit ut mihi loquebatur!"'
+                                            }
+                                        ],
+                                        en: [
+                                            {
+                                                text:
+                                                    'Oh, Lord, what a gravelike voice he had as he spoke to me!" '
+                                            }
+                                        ],
+                                        es: [
+                                            {
+                                                text: "¡Oh, Señor, con qué voz de ultratumba me habló! "
+                                            }
+                                        ],
+                                        it: [
+                                            {
+                                                text: "Oh Signore, con quale voce di tomba mi parlò! "
+                                            }
+                                        ]
+                                    },
+                                    comment:
+                                        " Translation from: With what a voice from the grave he talked to me!"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
+        }
+    }).mount("#app");
+</script>
+
+
+</body>
+
+</html>

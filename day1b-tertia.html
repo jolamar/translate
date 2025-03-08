@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Day1b Tertia</title>
+
+
+    <link rel='stylesheet' href='https://unpkg.com/rivet-core@2.5.2/css/rivet.min.css'>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body translate="no">
+<main id="app" class="rvt-p-all-sm">
+    <nav class="rvt-subnav rvt-m-bottom-sm" aria-label="Section navigation">
+        <ul class="rvt-subnav__list">
+            <li class="rvt-subnav__item">
+                <a href="index.html">Day0a Prologue</a>
+            </li>
+            <li class="rvt-subnav__item">
+                <a href="day1b-tertia.html" aria-current="page">Day1b Tertia</a>
+            </li>
+        </ul>
+    </nav>
+    <fieldset>
+        <legend>Select a language</legend>
+        <input type="checkbox" v-model="checkedLanguages" value="la" id="la" />
+        <label for="la">Latin</label>
+        <input type="checkbox" v-model="checkedLanguages" value="en" id="en" />
+        <label for="en">English</label>
+        <input type="checkbox" v-model="checkedLanguages" value="es" id="es" />
+        <label for="es">Spanish</label>
+        <input type="checkbox" v-model="checkedLanguages" value="it" id="it" />
+        <label for="it">Italian</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Controls</legend>
+        <input type="checkbox" v-model="declensionCase" id="declensionCase" />
+        <label for="declensionCase" style="color: #009900">Case</label>
+        <input type="checkbox" v-model="grammar" id="grammar" />
+        <label for="grammar" style="color: #cd1baf">Grammar</label>
+        <input type="checkbox" v-model="verbs" id="verbs" />
+        <label for="verbs" style="color: #dd7330">Verbs</label>
+        <input type="checkbox" v-model="comments" id="comments" />
+        <label for="comments" style="color: #0033FF">Comments</label>
+        <input type="checkbox" v-model="labels" id="labels" />
+        <label for="labels">Labels</label>
+    </fieldset>
+
+    <table class="rvt-m-top-md" border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+            <th v-for="language in checkedLanguages">
+                {{ chapter.title[language] }} ({{language}})
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td v-for="language in checkedLanguages">
+          <span class="rvt-font-mono" v-for="s in chapter.header[language]">
+            {{ s.text }}
+            <span
+                    class="tooltip"
+                    v-if="s.case != null"
+                    :style="{
+                      'border-bottom': declensionCase ? '2px solid #009900' : null,
+                      cursor: declensionCase ? 'pointer' : null
+                      }"
+            >
+                {{ s.case.value }}
+              <span v-if="declensionCase" class="tooltiptext">{{s.case.info}}</span>
+            </span>
+            <span
+                    class="tooltip"
+                    v-if="s.grammar != null"
+                    :style="{
+                  'border-bottom': grammar ? '2px solid #CD1BAF' : null,
+                   cursor: grammar ? 'pointer' : null
+                   }"
+            >
+              {{ s.grammar.value }}
+              <span v-if="grammar" class="tooltiptext">{{s.grammar.info}}</span>
+            </span>
+            <span
+                    class="tooltip"
+                    v-if="s.verb != null"
+                    :style="{
+                      'border-bottom': verbs ? '2px solid #DD7330' : null,
+                      cursor: verbs ? 'pointer' : null
+                      }"
+            >
+                {{ s.verb.value }}
+              <span v-if="verbs" class="tooltiptext">{{s.verb.info}}</span>
+            </span>
+            <span
+                    :title="comments ? s.comments.info : null"
+                    v-if="s.comments != null"
+                    :style="{
+                      'border-bottom': comments ? '2px solid #009900' : null,
+                      cursor: comments ? 'pointer' : null
+                      }"
+            >
+                {{ s.comments.value }}
+            </span>
+          </span>
+            </td>
+        </tr>
+        <template v-for="(paragraph, index) in chapter.paragraphs">
+            <tr class="rvt-font-serif" v-for="sentence in paragraph.sentences">
+                <td v-for="language in checkedLanguages">
+                    <template v-for="item in sentence.s[language]">
+                        <span v-if="item.text">{{ item.text }}</span>
+                        <span v-if="item.grammar">
+                <span class="tooltip" :style="{
+                  'border-bottom': grammar ? '2px solid #CD1BAF' : null,
+                   cursor: grammar ? 'pointer' : null
+                   }">
+                  {{ item.grammar.value }}
+                  <span v-if="grammar" class="tooltiptext">{{item.grammar.info}}</span>
+                </span>
+              </span>
+                        <span v-if="item.case">
+                <span class="tooltip" :style="{
+                      'border-bottom': declensionCase ? '2px solid #009900' : null,
+                      cursor: declensionCase ? 'pointer' : null
+                      }">
+                  {{ item.case.value }}
+                  <span v-if="declensionCase" class="tooltiptext">{{item.case.info}}</span>
+                </span>
+              </span>
+                        <span v-if="item.verb">
+                <span class="tooltip" :style="{
+                      'border-bottom': verbs ? '2px solid #DD7330' : null,
+                      cursor: verbs ? 'pointer' : null
+                      }"
+                >
+                  {{ item.verb.value }}
+                  <span v-if="verbs" class="tooltiptext">{{item.verb.info}}</span>
+                </span>
+              </span>
+                        <span class="tooltip"
+                              v-if="comments && sentence.comment && language == 'en'"
+                              :style="{
+                                  'color': comments ? '#0033FF' : null,
+                                  cursor: comments ? 'pointer' : null
+                                  }"
+                        >
+                                (*)
+                                <span class="tooltiptext">{{ sentence.comment }}</span>
+                            </span>
+                    </template>
+                </td>
+            </tr>
+            <tr v-if="index < chapter.paragraphs.length - 1">
+                <td class="rvt-bg-black-000" colspan="2" />
+            </tr>
+        </template>
+        </tbody>
+    </table>
+</main>
+
+
+<script>
+    const { createApp, ref } = Vue
+    createApp({
+        data() {
+            return {
+                checkedLanguages: ["la", "en"],
+                grammar: true,
+                verbs: true,
+                declensionCase: true,
+                comments: true,
+                labels: true,
+                chapter: {
+                    "title": {
+                        "la": "Hora Tertia",
+                        "en": "Terce"
+                    },
+                    "header": {
+                        "la": [
+                            {
+                                "text": "In qua Guillelmus cum abbate consiliosam conversationem habet.."
+                            }
+                        ],
+                        "en": [
+                            {
+                                "text": "In which William has an instrucive conversation with the abbot."
+                            }
+                        ]
+                    },
+                    "paragraphs": [
+                        {
+                            "sentences": [
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "text": "Cellararius vir robustus erat, vulgaris [N] aspectu [B respect] sed festivus, canus sed fortis, parvus sed velox."
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "The cellarer was a stout man, vulgar in appearance but jolly, white-haired but still strong, small but quick."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "text": "Ad cubicula nostra in hospitio peregrinorum duxit nos."
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "He led us to our cells in the pilgrims’ hospice."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "text": "Immo, ad "
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "C",
+                                                    "value": "cubiculum"
+                                                }
+                                            },
+                                            {
+                                                "text": " magistro meo "
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "C",
+                                                    "value": "attributum"
+                                                }
+                                            },
+                                            {
+                                                "text": " duxit, mihi promittens quod die "
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "B time when",
+                                                    "value": "sequente"
+                                                }
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "Or, rather, he led us to the cell assigned to my master, promising me that by the next day he would have cleared one for me also, since, though a novice, I was their guest and therefore to be treated with all honor."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "sentences": [
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "text": "Postea monachi vinum, caseum, olivas, panem, et uvas passas nobis portaverunt, et ad comendum relinquerunt nos."
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "Then the monks brought us wine, cheese, olives, bread, and excellent raisins, and left us to our refreshment."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "text": "Valde comedimus bibimusque."
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "We ate and drank heartily."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "sentences": [
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "text": "Omnesne fructus horti tui?"
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "All products of your garden?"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "s": {
+                                        "la": [
+                                            {
+                                                "grammar": {
+                                                    "info": "passive to active change",
+                                                    "value": "Minime"
+                                                }
+                                            },
+                                            {
+                                                "text": ", Severinus dixit, \"multae substantiae, rarae, in his locis coli non possunt; multos "
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "C duration of time",
+                                                    "value": "annos"
+                                                }
+                                            },
+                                            {
+                                                "text": " ex omni "
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "B",
+                                                    "value": "parte"
+                                                }
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "G",
+                                                    "value": "mundi"
+                                                }
+                                            },
+                                            {
+                                                "case": {
+                                                    "info": "N",
+                                                    "value": "monachi"
+                                                }
+                                            },
+                                            {
+                                                "text": " eas mihi attulerunt.\""
+                                            }
+                                        ],
+                                        "en": [
+                                            {
+                                                "text": "No, Severinus said, \"many substances, rare, or impossible to grow in this climate, have been brought to me over the years by monks arriving from every part of the world.\""
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+
+                }
+            };
+        }
+    }).mount("#app");
+</script>
+
+
+</body>
+
+</html>
