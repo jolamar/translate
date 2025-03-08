@@ -1,0 +1,191 @@
+{
+  "title": {
+    "la": "Hora Tertia",
+    "en": "Terce"
+  },
+  "header": {
+    "la": [
+      {
+        "text": "In qua Guillelmus cum abbate consiliosam conversationem habet.."
+      }
+    ],
+    "en": [
+      {
+        "text": "In which William has an instrucive conversation with the abbot."
+      }
+    ]
+  },
+  "paragraphs": [
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Cellararius vir robustus erat, vulgaris [N] aspectu [B respect] sed festivus, canus sed fortis, parvus sed velox."
+              }
+            ],
+            "en": [
+              {
+                "text": "The cellarer was a stout man, vulgar in appearance but jolly, white-haired but still strong, small but quick."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Ad cubicula nostra in hospitio peregrinorum duxit nos."
+              }
+            ],
+            "en": [
+              {
+                "text": "He led us to our cells in the pilgrims’ hospice."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Immo, ad "
+              },
+              {
+                "case": {
+                  "info": "C",
+                  "value": "cubiculum"
+                }
+              },
+              {
+                "text": " magistro meo "
+              },
+              {
+                "case": {
+                  "info": "C",
+                  "value": "attributum"
+                }
+              },
+              {
+                "text": " duxit, mihi promittens quod die "
+              },
+              {
+                "case": {
+                  "info": "B time when",
+                  "value": "sequente"
+                }
+              }
+            ],
+            "en": [
+              {
+                "text": "Or, rather, he led us to the cell assigned to my master, promising me that by the next day he would have cleared one for me also, since, though a novice, I was their guest and therefore to be treated with all honor."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Postea monachi vinum, caseum, olivas, panem, et uvas passas nobis portaverunt, et ad comendum relinquerunt nos."
+              }
+            ],
+            "en": [
+              {
+                "text": "Then the monks brought us wine, cheese, olives, bread, and excellent raisins, and left us to our refreshment."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Valde comedimus bibimusque."
+              }
+            ],
+            "en": [
+              {
+                "text": "We ate and drank heartily."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Omnesne fructus horti tui?"
+              }
+            ],
+            "en": [
+              {
+                "text": "All products of your garden?"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "grammar": {
+                  "info": "passive to active change",
+                  "value": "Minime"
+                }
+              },
+              {
+                "text": ", Severinus dixit, \"multae substantiae, rarae, in his locis coli non possunt; multos "
+              },
+              {
+                "case": {
+                  "info": "C duration of time",
+                  "value": "annos"
+                }
+              },
+              {
+                "text": " ex omni "
+              },
+              {
+                "case": {
+                  "info": "B",
+                  "value": "parte"
+                }
+              },
+              {
+                "case": {
+                  "info": "G",
+                  "value": "mundi"
+                }
+              },
+              {
+                "case": {
+                  "info": "N",
+                  "value": "monachi"
+                }
+              },
+              {
+                "text": " eas mihi attulerunt.\""
+              }
+            ],
+            "en": [
+              {
+                "text": "No, Severinus said, \"many substances, rare, or impossible to grow in this climate, have been brought to me over the years by monks arriving from every part of the world.\""
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+
+}
