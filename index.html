@@ -156,8 +156,8 @@
                         </template>
                     </td>
                 </tr>
-                <tr v-if="index < chapter.paragraphs.length - 1">
-                    <td class="rvt-bg-black-000" colspan="2" />
+                <tr v-if="checkedLanguages.length && index < chapter.paragraphs.length - 1">
+                    <td class="rvt-bg-black-000" :colspan="checkedLanguages.length" />
                 </tr>
             </template>
             </tbody>
