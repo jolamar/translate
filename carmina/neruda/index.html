@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Neruda</title>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/rivet-core@2.5.2/css/rivet.min.css">
+
+    <link rel="stylesheet" href="../../style.css">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body translate="no">
+<main id="app" class="rvt-p-all-sm">
+    <nav v-if="navigation" class="rvt-subnav rvt-m-bottom-sm" aria-label="Section navigation">
+        <ul class="rvt-subnav__list">
+            <li v-for="nav in navigation" class="rvt-subnav__item">
+                <a :href="nav.path" :aria-current="nav.isCurrentPage || nav.isDefault ? 'page' : null">{{ nav.title }}</a>
+            </li>
+        </ul>
+    </nav>
+    <fieldset v-if="chapter">
+
+        <table>
+            <tr>
+                <td>
+                    <h3>Languages</h3>
+
+                    <span v-for="language in chapter.languageDefinition">
+                        <input type="checkbox" v-model="checkedLanguages" :value="language.lang" :id="language.lang" />
+                        <label :for="language.lang">{{ language.name }}</label>
+                    </span>
+                </td>
+                <td>
+                    <h3>Controls</h3>
+                    <input type="checkbox" v-model="declensionCase" id="declensionCase" />
+                    <label for="declensionCase" style="color: #009900">Case</label>
+                    <input type="checkbox" v-model="grammar" id="grammar" />
+                    <label for="grammar" style="color: #cd1baf">Grammar</label>
+                    <input type="checkbox" v-model="verbs" id="verbs" />
+                    <label for="verbs" style="color: #dd7330">Verbs</label>
+                    <input type="checkbox" v-model="comments" id="comments" />
+                    <label for="comments" style="color: #0033FF">Comments</label>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+    </fieldset>
+
+
+    <table v-if="chapter" class="rvt-m-top-md" border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+            <th v-for="language in checkedLanguages">
+                {{ chapter.title[language] }} ({{language}})
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td v-for="language in checkedLanguages">
+          <span class="rvt-font-mono" v-for="s in chapter.header[language]">
+            {{ s.text }}
+            <span
+                    class="tooltip"
+                    v-if="s.case != null"
+                    :style="{
+                      'border-bottom': declensionCase ? '2px solid #009900' : null,
+                      cursor: declensionCase ? 'pointer' : null
+                      }"
+            >
+                {{ s.case.value }}
+              <span v-if="declensionCase" class="tooltiptext">{{s.case.info}}</span>
+            </span>
+            <span
+                    class="tooltip"
+                    v-if="s.grammar != null"
+                    :style="{
+                  'border-bottom': grammar ? '2px solid #CD1BAF' : null,
+                   cursor: grammar ? 'pointer' : null
+                   }"
+            >
+              {{ s.grammar.value }}
+              <span v-if="grammar" class="tooltiptext">{{s.grammar.info}}</span>
+            </span>
+            <span
+                    class="tooltip"
+                    v-if="s.verb != null"
+                    :style="{
+                      'border-bottom': verbs ? '2px solid #DD7330' : null,
+                      cursor: verbs ? 'pointer' : null
+                      }"
+            >
+                {{ s.verb.value }}
+              <span v-if="verbs" class="tooltiptext">{{s.verb.info}}</span>
+            </span>
+            <span
+                    :title="comments ? s.comments.info : null"
+                    v-if="s.comments != null"
+                    :style="{
+                      'border-bottom': comments ? '2px solid #009900' : null,
+                      cursor: comments ? 'pointer' : null
+                      }"
+            >
+                {{ s.comments.value }}
+            </span>
+          </span>
+            </td>
+        </tr>
+        <template v-for="(paragraph, index) in chapter.paragraphs">
+            <tr class="rvt-font-serif" v-for="sentence in paragraph.sentences">
+                <td v-for="language in checkedLanguages">
+                    <template v-for="item in sentence.s[language]">
+                        <span v-if="item.text">{{ item.text }}</span>
+                        <span v-if="item.grammar">
+                <span class="tooltip" :style="{
+                  'border-bottom': grammar ? '2px solid #CD1BAF' : null,
+                   cursor: grammar ? 'pointer' : null
+                   }">
+                  {{ item.grammar.value }}
+                  <span v-if="grammar" class="tooltiptext">{{item.grammar.info}}</span>
+                </span>
+              </span>
+                        <span v-if="item.case">
+                <span class="tooltip" :style="{
+                      'border-bottom': declensionCase ? '2px solid #009900' : null,
+                      cursor: declensionCase ? 'pointer' : null
+                      }">
+                  {{ item.case.value }}
+                  <span v-if="declensionCase" class="tooltiptext">{{item.case.info}}</span>
+                </span>
+              </span>
+                        <span v-if="item.verb">
+                <span class="tooltip" :style="{
+                      'border-bottom': verbs ? '2px solid #DD7330' : null,
+                      cursor: verbs ? 'pointer' : null
+                      }"
+                >
+                  {{ item.verb.value }}
+                  <span v-if="verbs" class="tooltiptext">{{item.verb.info}}</span>
+                </span>
+              </span>
+                        <span class="tooltip"
+                              v-if="comments && sentence.comment && language == 'en'"
+                              :style="{
+                                  'color': comments ? '#0033FF' : null,
+                                  cursor: comments ? 'pointer' : null
+                                  }"
+                        >
+                                (*)
+                                <span class="tooltiptext comment">{{ sentence.comment }}</span>
+                            </span>
+                    </template>
+                </td>
+            </tr>
+            <tr v-if="checkedLanguages.length && index < chapter.paragraphs.length - 1">
+                <td class="rvt-bg-black-000" :colspan="checkedLanguages.length" />
+            </tr>
+        </template>
+        </tbody>
+    </table>
+</main>
+
+
+<script>
+    const { createApp, ref } = Vue
+    createApp({
+        data() {
+            return {
+                checkedLanguages: ["la"],
+                navigation: null,
+                grammar: false,
+                verbs: false,
+                declensionCase: false,
+                comments: false,
+                chapter: null
+            };
+        },
+        mounted() {
+            fetch("../navigation.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    this.navigation = data;
+                    this.navigation.forEach((nav) => {
+                        nav.isCurrentPage = window.location.pathname.includes(nav.path);
+                    });
+                });
+            fetch("neruda.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    this.chapter = data;
+                });
+        },
+    }).mount("#app");
+</script>
+
+
+</body>
+
+</html>

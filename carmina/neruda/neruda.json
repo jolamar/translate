@@ -1,0 +1,568 @@
+{
+  "languageDefinition": [
+    {
+      "lang": "la",
+      "name": "Latin"
+    },
+    {
+      "lang": "en",
+      "name": "English"
+    },
+    {
+      "lang": "es",
+      "name": "Spanish"
+    }
+  ],
+  "title": {
+    "la": "Amo cum siles",
+    "en": "I like it when you’re silent",
+    "es": "Me gustas cuando callas"
+  },
+  "header": {},
+  "paragraphs": [
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Amo cum siles quoniam velut absens es,"
+              }
+            ],
+            "en": [
+              {
+                "text": "I like it when you’re silent, for you seem as if you’re gone,"
+              }
+            ],
+            "es": [
+              {
+                "text": "Me gustas cuando callas porque estas como ausente,"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "et procul audis me, et vox mea non tangit te."
+              }
+            ],
+            "en": [
+              {
+                "text": "and you hear me from afar, and my voice doesn’t touch you."
+              }
+            ],
+            "es": [
+              {
+                "text": "y me oyes desde lejos, y mi voz no te toca."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "grammar": {
+                  "info": "ind stat",
+                  "value": "Videtur"
+                }
+              },
+              {
+                "text": "oculos"
+              },
+              {
+                "case": {
+                  "info": "C->N",
+                  "value": "tuos"
+                }
+              },
+              {
+                "text": "a te advolavisse"
+              }
+            ],
+            "en": [
+              {
+                "text": "It seems as if your eyes had flown away from you"
+              }
+            ],
+            "es": [
+              {
+                "text": "Parece que los ojos se te hubieran volado"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "grammar": {
+                  "info": "ind stat",
+                  "value": "videtur"
+                }
+              },
+              {
+                "case": {
+                  "info": "C->N",
+                  "value": "osculum"
+                }
+              },
+              {
+                "text": "os"
+              },
+              {
+                "case": {
+                  "info": "C",
+                  "value": "tuum"
+                }
+              },
+              {
+                "text": "occlusisse."
+              }
+            ],
+            "en": [
+              {
+                "text": "and it looks as if a kiss had sealed your mouth."
+              }
+            ],
+            "es": [
+              {
+                "text": "y parece que un beso te cerrara la boca."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "grammar": {
+                  "info": "causa;",
+                  "value": "Sicut"
+                }
+              },
+              {
+                "text": "omnia animae"
+              },
+              {
+                "case": {
+                  "info": "G with ideas of filling",
+                  "value": "meae"
+                }
+              },
+              {
+                "text": "plena sunt"
+              }
+            ],
+            "en": [
+              {
+                "text": "Like all things are full of my soul"
+              }
+            ],
+            "es": [
+              {
+                "text": "Como todas las cosas están llenas de mi alma"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "ex omnibus, plena animae"
+              },
+              {
+                "case": {
+                  "info": "G",
+                  "value": "meae"
+                }
+              },
+              {
+                "text": "emergis,"
+              }
+            ],
+            "en": [
+              {
+                "text": "You emerge from the things, full of my soul."
+              }
+            ],
+            "es": [
+              {
+                "text": "emerges de las cosas, llena del alma mía."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "case": {
+                  "info": "V",
+                  "value": "Papilio"
+                }
+              },
+              {
+                "text": ", accedis animae"
+              },
+              {
+                "case": {
+                  "info": "D",
+                  "value": "meae"
+                }
+              },
+              {
+                "text": ","
+              }
+            ],
+            "en": [
+              {
+                "text": "Dream butterfly, you look like my soul,"
+              }
+            ],
+            "es": [
+              {
+                "text": "Mariposa de sueño, te pareces a mi alma,"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "et accedis"
+              },
+              {
+                "case": {
+                  "info": "D",
+                  "value": "verbo"
+                }
+              },
+              {
+                "text": "\"melancholia\"."
+              }
+            ],
+            "en": [
+              {
+                "text": "and you look like the word melancholy."
+              }
+            ],
+            "es": [
+              {
+                "text": "y te pareces a la palabra melancolía."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Amo cum siles et quasi longinqua es."
+              }
+            ],
+            "en": [
+              {
+                "text": "I like you when you are quiet and it is as though you are distant."
+              }
+            ],
+            "es": [
+              {
+                "text": "Me gustas cuando callas y estás como distante."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Et quasi querens es, o"
+              },
+              {
+                "case": {
+                  "info": "V",
+                  "value": "sopiens papilio"
+                }
+              },
+              {
+                "text": "."
+              }
+            ],
+            "en": [
+              {
+                "text": "It is as though you are complaining, butterfly in lullaby."
+              }
+            ],
+            "es": [
+              {
+                "text": "Y estás como quejándote, mariposa en arrullo."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Et procul audis me, et vox mea non ad te advenit:"
+              }
+            ],
+            "en": [
+              {
+                "text": "And you hear me from far away, and my voice does not reach you:"
+              }
+            ],
+            "es": [
+              {
+                "text": "Y me oyes desde lejos, y mi voz no te alcanza:"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Permittas silentio"
+              },
+              {
+                "case": {
+                  "info": "B Means",
+                  "value": "tuo"
+                }
+              },
+              {
+                "text": "mihi tacere."
+              }
+            ],
+            "en": [
+              {
+                "text": "let me fall quiet with your own silence."
+              }
+            ],
+            "es": [
+              {
+                "text": "déjame que me calle con el silencio tuyo."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Atque permittas silentio"
+              },
+              {
+                "case": {
+                  "info": "B Means",
+                  "value": "tuo"
+                }
+              },
+              {
+                "text": "mihi loqui"
+              }
+            ],
+            "en": [
+              {
+                "text": "Let me also speak to you with your silence"
+              }
+            ],
+            "es": [
+              {
+                "text": "Déjame que te hable también con tu silencio"
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "case": {
+                  "info": "B",
+                  "value": "Lucido"
+                }
+              },
+              {
+                "text": "quasi lucerna, simplice quasi"
+              },
+              {
+                "case": {
+                  "info": "B Means in agreement with silentio",
+                  "value": "anulo"
+                }
+              },
+              {
+                "text": "."
+              }
+            ],
+            "en": [
+              {
+                "text": "Clear like a lamp, simple like a ring."
+              }
+            ],
+            "es": [
+              {
+                "text": "claro como una lámpara, simple como un anillo."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Similis nam nocti es, tacita plenaque"
+              },
+              {
+                "case": {
+                  "info": "G",
+                  "value": "constellationum"
+                }
+              },
+              {
+                "text": "."
+              }
+            ],
+            "en": [
+              {
+                "text": "For you are like the night, still and constellated,"
+              }
+            ],
+            "es": [
+              {
+                "text": "Eres como la noche, callada y constelada."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Silentium tuum de stella est, tam remotissimum tam simplexque."
+              }
+            ],
+            "en": [
+              {
+                "text": "Your silence is of a star, so distant and so simple."
+              }
+            ],
+            "es": [
+              {
+                "text": "Tu silencio es de estrella, tan lejano y sencillo."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sentences": [
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Amo cum siles quoniam velut absens es."
+              }
+            ],
+            "en": [
+              {
+                "text": "I like you when you are quiet because it is as though you are absent."
+              }
+            ],
+            "es": [
+              {
+                "text": "Me gustas cuando callas porque estás como ausente."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Remota dolensque tamquam"
+              },
+              {
+                "verb": {
+                  "info": "perf subj",
+                  "value": "perieris"
+                }
+              },
+              {
+                "text": "."
+              }
+            ],
+            "en": [
+              {
+                "text": "Distant and painful as if you had died."
+              }
+            ],
+            "es": [
+              {
+                "text": "Distante y dolorosa como si hubieras muerto."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Singulum verbum, singulus risus tunc sufficit."
+              }
+            ],
+            "en": [
+              {
+                "text": "A word then, a smile is enough."
+              }
+            ],
+            "es": [
+              {
+                "text": "Una palabra entonces, una sonrisa bastan."
+              }
+            ]
+          }
+        },
+        {
+          "s": {
+            "la": [
+              {
+                "text": "Et laetus, laetus sum quoniam non verum est."
+              }
+            ],
+            "en": [
+              {
+                "text": "And I am happy, happy that it is not true."
+              }
+            ],
+            "es": [
+              {
+                "text": "Et laetus, laetus sum quoniam non verum est."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
