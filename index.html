@@ -22,16 +22,12 @@
                 </li>
             </ul>
         </nav>
-        <fieldset>
+        <fieldset v-if="chapter">
             <legend>Select a language</legend>
-            <input type="checkbox" v-model="checkedLanguages" value="la" id="la" />
-            <label for="la">Latin</label>
-            <input type="checkbox" v-model="checkedLanguages" value="en" id="en" />
-            <label for="en">English</label>
-            <input type="checkbox" v-model="checkedLanguages" value="es" id="es" />
-            <label for="es">Spanish</label>
-            <input type="checkbox" v-model="checkedLanguages" value="it" id="it" />
-            <label for="it">Italian</label>
+            <span v-for="language in chapter.languageDefinition">
+                <input type="checkbox" v-model="checkedLanguages" :value="language.lang" :id="language.lang" />
+                <label :for="language.lang">{{ language.name }}</label>
+            </span>
         </fieldset>
 
         <fieldset>
@@ -186,7 +182,7 @@
                         nav.isCurrentPage = window.location.pathname.includes(nav.path);
                     });
                 });
-            fetch("chapters/day0a-prologue.json")
+            fetch("chapters/day0_converted.json")
                 .then((response) => response.json())
                 .then((data) => {
                     this.chapter = data;

@@ -1,4 +1,18 @@
 {
+  "languageDefinition": [
+    {
+      "lang": "la",
+      "name": "Latin"
+    },
+    {
+      "lang": "en",
+      "name": "English"
+    },
+    {
+      "lang": "it",
+      "name": "Italian"
+    }
+  ],
   "title": {
     "la": "Hora Prima",
     "en": "Prime"
